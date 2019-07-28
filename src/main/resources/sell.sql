@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 28/07/2019 19:11:21
+ Date: 28/07/2019 22:26:14
 */
 
 SET NAMES utf8mb4;
@@ -29,7 +29,7 @@ CREATE TABLE `order_detail`  (
   `product_price` decimal(8, 2) NOT NULL COMMENT '商品单价',
   `product_quantity` int(11) NOT NULL COMMENT '购买商品数量',
   `product_icon` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品小图',
-  `carete_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
   PRIMARY KEY (`detail_id`) USING BTREE,
   INDEX `idx_order_id`(`order_id`) USING BTREE
@@ -45,7 +45,7 @@ CREATE TABLE `order_master`  (
   `buyer_phone` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '买家手机',
   `buyer_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '买家地址',
   `buyer_openid` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '买家微信openid',
-  `order_acount` decimal(8, 2) NOT NULL COMMENT '订单总额',
+  `order_account` decimal(8, 2) NOT NULL COMMENT '订单总额',
   `order_status` tinyint(3) NOT NULL DEFAULT 0 COMMENT '订单状态 默认0新下单',
   `pay_status` tinyint(3) NOT NULL DEFAULT 0 COMMENT '支付状态 默认0未支付',
   `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',

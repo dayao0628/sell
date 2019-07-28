@@ -36,18 +36,19 @@ public class ProductCategoryRepositoryTest {
 
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback()
     public void saveTest() {
         ProductCategory productCategory = new ProductCategory();
-        productCategory.setCategoryType(99);
-        productCategory.setCategoryName("test lombok");
+        productCategory.setCategoryId(3);
+        productCategory.setCategoryType(1);
+        productCategory.setCategoryName("test lombok22");
         ProductCategory save = repository.save(productCategory);
         Assert.assertNotNull(save);
     }
 
     @Test
     @Transactional
-    @Rollback(true)
+    @Rollback()
     public void deleteAllTest() {
         repository.deleteAll();
     }

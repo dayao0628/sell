@@ -53,15 +53,6 @@ public interface ProductCategoryService {
     ResultDto<List<ProductCategory>> findAllByCategoryTypes(List<Integer> categoryTypeList) throws Exception;
 
     /**
-     * 新增或更新时的表单验证
-     *
-     * @param br 验证结果
-     * @return 返回结果
-     * @throws Exception Exception
-     */
-    ResultDto validate(BindingResult br) throws Exception;
-
-    /**
      * 根据主键查找
      *
      * @param categoryId 主键ID

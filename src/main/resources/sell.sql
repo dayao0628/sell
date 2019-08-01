@@ -11,7 +11,7 @@
  Target Server Version : 50717
  File Encoding         : 65001
 
- Date: 28/07/2019 22:26:14
+ Date: 02/08/2019 00:16:33
 */
 
 SET NAMES utf8mb4;
@@ -22,9 +22,9 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail`  (
-  `detail_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单详情主键ID',
-  `order_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单主表ID',
-  `product_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品ID',
+  `detail_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单详情主键ID',
+  `order_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单主表ID',
+  `product_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品ID',
   `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品名字',
   `product_price` decimal(8, 2) NOT NULL COMMENT '商品单价',
   `product_quantity` int(11) NOT NULL COMMENT '购买商品数量',
@@ -40,7 +40,7 @@ CREATE TABLE `order_detail`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `order_master`;
 CREATE TABLE `order_master`  (
-  `order_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单主表主键ID',
+  `order_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '订单主表主键ID',
   `buyer_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '买家名字',
   `buyer_phone` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '买家手机',
   `buyer_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '买家地址',
@@ -66,19 +66,20 @@ CREATE TABLE `product_category`  (
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后一次更新时间',
   PRIMARY KEY (`category_id`) USING BTREE,
   UNIQUE INDEX `uqe_category_type`(`category_type`) USING BTREE COMMENT '类目类型索引'
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品类目表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '商品类目表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for product_info
 -- ----------------------------
 DROP TABLE IF EXISTS `product_info`;
 CREATE TABLE `product_info`  (
-  `product_id` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品表主键ID',
+  `product_id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品表主键ID',
   `product_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品名称',
   `product_price` decimal(8, 2) NOT NULL COMMENT '商品单价',
   `product_stock` int(255) NOT NULL COMMENT '商品库存',
   `product_description` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品描述',
   `product_icon` varchar(1024) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品小图',
+  `product_status` int(1) NOT NULL COMMENT '商品状态 0 ：上架 1：下架',
   `category_type` int(11) NOT NULL COMMENT '类目编号',
   `create_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '最后一次更新时间',

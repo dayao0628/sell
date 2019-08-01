@@ -2,6 +2,9 @@ package com.yao.sell.utils;
 
 import com.yao.sell.dto.ResultDto;
 import com.yao.sell.enums.ResultStatusEnum;
+import org.springframework.validation.BindingResult;
+
+import java.util.Objects;
 
 /**
  * <p> 返回接口帮助类
@@ -38,5 +41,21 @@ public class ResultUtil {
         result.setStatus(ResultStatusEnum.ERROR.getStatus());
         result.setMessage(message);
         return result;
+    }
+
+    /**
+     * 表单验证不通过返回结果
+     *
+     * @param br 表单验证内容
+     * @return null 结果正确
+     */
+    public static ResultDto validate(BindingResult br) {
+        if (br == null) {
+            return null;
+        }
+        if (br.hasErrors()) {
+            return error(Objects.requireNonNull(br.getFieldError()).getDefaultMessage());
+        }
+        return null;
     }
 }

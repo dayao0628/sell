@@ -1,5 +1,7 @@
 package com.yao.sell.enums;
 
+import lombok.Getter;
+
 /**
  * <p> 返回接口状态类型枚举类
  * <p>
@@ -9,6 +11,7 @@ package com.yao.sell.enums;
  * @author YaoZhengPei
  * @since 2019/7/28 23:12
  */
+@Getter
 public enum ResultStatusEnum {
 
     /**
@@ -24,18 +27,6 @@ public enum ResultStatusEnum {
     private Integer status;
 
     private String message;
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     ResultStatusEnum(Integer status, String message) {
         this.status = status;

@@ -1,10 +1,13 @@
 package com.yao.sell.repository;
 
 import com.yao.sell.dataobject.ProductInfo;
+import com.yao.sell.enums.ProductInfoStatusEnum;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -29,6 +32,14 @@ public class ProductInfoRepositoryTest {
     public void findAllTest() {
         List<ProductInfo> all = repository.findAll();
         System.out.println(all);
+    }
+
+    @Test
+    public void findByProductStatusTest() {
+        PageRequest pageRequest = PageRequest.of(0, 10);
+        Page<ProductInfo> pages = repository.findByProductStatus(ProductInfoStatusEnum.SELL_ENABLE.getProductStatus(), pageRequest);
+        List<ProductInfo> content = pages.getContent();
+        System.out.println(content);
     }
 
 

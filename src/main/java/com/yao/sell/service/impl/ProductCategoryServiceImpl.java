@@ -37,7 +37,7 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Override
     @Transactional(rollbackOn = Exception.class)
     public ResultDto<ProductCategory> save(ProductCategory productCategory, BindingResult br) throws Exception {
-        ResultDto result = validate(br);
+        ResultDto result = ResultUtil.validate(br);
         if (result != null) {
             return result;
         }
@@ -62,17 +62,6 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     public void delete(Integer categoryId) throws Exception {
         ProductCategory productCategory = findById(categoryId);
         productCategoryRepository.delete(productCategory);
-    }
-
-    @Override
-    public ResultDto validate(BindingResult br) throws Exception {
-        if (br == null) {
-            return null;
-        }
-        if (br.hasErrors()) {
-            return ResultUtil.error(Objects.requireNonNull(br.getFieldError()).getDefaultMessage());
-        }
-        return null;
     }
 
     @Override

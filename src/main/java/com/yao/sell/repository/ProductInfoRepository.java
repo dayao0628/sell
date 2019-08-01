@@ -1,6 +1,8 @@
 package com.yao.sell.repository;
 
 import com.yao.sell.dataobject.ProductInfo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
@@ -15,4 +17,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface ProductInfoRepository extends JpaRepository<ProductInfo, String> {
 
+    /**
+     * 根据状态查询商品
+     *
+     * @param productStatus 商品状态
+     * @param pageable      分页
+     * @return
+     */
+    Page<ProductInfo> findByProductStatus(Integer productStatus, Pageable pageable);
 }
